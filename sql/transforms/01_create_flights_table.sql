@@ -1,14 +1,16 @@
 DROP TABLE IF EXISTS warehouse.flights;
 
-CREATE TABLE warehouse.flights AS
+CREATE TABLE
+    warehouse.flights AS
 SELECT
-    fl_date::TIMESTAMP::DATE AS flight_date,
+    CAST(fl_date AS DATE) AS flight_date,
     op_unique_carrier AS carrier,
     origin,
     dest,
-    dep_delay::NUMERIC AS dep_delay,
-    arr_delay::NUMERIC AS arr_delay,
-    cancelled::NUMERIC::INT AS cancelled,
-    diverted::NUMERIC::INT AS diverted,
-    distance::NUMERIC AS distance
-FROM staging.t_ontime_reporting_raw;
+    CAST(dep_delay AS NUMERIC) AS dep_delay,
+    CAST(arr_delay AS NUMERIC) AS arr_delay,
+    CAST(cancelled AS INTEGER) AS cancelled,
+    CAST(diverted AS INTEGER) AS diverted,
+    CAST(distance AS NUMERIC) AS distance
+FROM
+    staging.t_ontime_reporting_raw;
