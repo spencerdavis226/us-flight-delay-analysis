@@ -33,6 +33,8 @@ WHERE
 GROUP BY
   origin,
   dest
+HAVING
+  COUNT(*) > 100
 ORDER BY
   avg_dep_delay DESC
 LIMIT
@@ -50,6 +52,8 @@ WHERE
 GROUP BY
   origin,
   dest
+HAVING
+  COUNT(*) > 100
 ORDER BY
   avg_dep_delay ASC
 LIMIT
@@ -68,6 +72,8 @@ WHERE
 GROUP BY
   origin,
   dest
+HAVING
+  COUNT(*) > 100
 ORDER BY
   avg_arr_delay DESC
 LIMIT
@@ -85,6 +91,8 @@ WHERE
 GROUP BY
   origin,
   dest
+HAVING
+  COUNT(*) > 100
 ORDER BY
   avg_arr_delay ASC
 LIMIT
