@@ -1,6 +1,6 @@
 # Tampa Air Travel Operations Analysis
 
-A SQL-first analytics project exploring flight delays, cancellations, and operational performance using U.S. Bureau of Transportation Statistics (BTS) data.
+A SQL-first analytics project analyzing flight delays, cancellations, and operational performance across U.S. airports using Bureau of Transportation Statistics (BTS) data.
 
 ---
 
@@ -8,9 +8,10 @@ A SQL-first analytics project exploring flight delays, cancellations, and operat
 
 This project analyzes January 2024 flight data (~547k records) to understand:
 
-- What drives delays and cancellations
+- What overall flight reliability looks like
 - Which carriers, routes, and airports perform best/worst
-- Where disruption is concentrated in the network
+- Where delays and cancellations are most concentrated
+- How delays behave across the network (e.g., departure vs arrival)
 
 Built to demonstrate real-world analyst thinking, not just SQL syntax.
 
@@ -20,7 +21,7 @@ Built to demonstrate real-world analyst thinking, not just SQL syntax.
 
 - **PostgreSQL** – data modeling + analysis
 - **SQL** – core analysis (aggregations, filtering, KPIs)
-- **Tableau** – dashboard (in progress)
+- **Tableau** – dashboard built from SQL export tables
 - **VS Code + GitHub** – project workflow
 
 ---
@@ -51,19 +52,35 @@ Built to demonstrate real-world analyst thinking, not just SQL syntax.
     03_carrier_analysis.sql
     04_airport_analysis.sql
     05_route_analysis.sql
+    06_tableau_exports.sql
 
   /schema
-  /staging
-  /transforms
+    create_schema.sql
 
+  /staging
+    create_t_ontime_reporting_raw.sql
+    load_t_ontime_reporting_raw.sql
+
+  /transforms
+    create_flights_table.sql
+
+/tableau
+  /exports
+    kpi_summary.csv
+    carrier_performance.csv
+    airport_performance.csv
+    route_performance.csv
+
+analysis_notes.md
 README.md
+REFERENCE.md
 ```
 
 ---
 
 ## Key Questions
 
-- What is overall flight reliability?
+- What does overall flight reliability look like?
 - Which carriers perform best and worst?
 - Where (routes/airports) are delays concentrated?
 - Do flights recover delays in transit?
@@ -112,7 +129,7 @@ Takeaway: Flights often recover time in the air.
 
 ---
 
-### 4. Delays Are NOT Evenly Distributed
+### 4. Delays Are Concentrated (Not System-Wide)
 
 Performance varies significantly by:
 
@@ -181,6 +198,7 @@ Takeaway: some routes worsen in transit due to downstream congestion.
   - `GROUP BY`
   - `FILTER`
   - `HAVING COUNT(*) > 100` (to avoid small-sample noise)
+- Export clean, aggregated tables for Tableau visualization
 
 ---
 
@@ -197,9 +215,9 @@ This project demonstrates:
 
 ## Next Steps
 
-- Build Tableau dashboard
-- Add visual storytelling
-- Refine executive summary
+- Finalize Tableau dashboard layout and visuals
+- Add dashboard screenshot to README
+- Write concise executive summary
 
 ---
 
@@ -211,7 +229,7 @@ Flight performance is generally strong, but delays are:
 - driven heavily by departure issues
 - amplified by bottlenecks like DFW
 
-This is a distribution problem, not a system-wide failure.
+This is a concentration problem, not a system-wide failure.
 
 ---
 
