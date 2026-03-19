@@ -17,6 +17,14 @@ Built to demonstrate real-world analyst thinking, not just SQL syntax.
 
 ---
 
+## Business Context
+
+This analysis simulates an operations or airline performance team seeking to understand where delays and cancellations are most concentrated across the U.S. flight network.
+
+The goal is to identify patterns in disruption and highlight areas where operational improvements would have the highest impact.
+
+---
+
 ## Tech Stack
 
 - **PostgreSQL** – data modeling + analysis
