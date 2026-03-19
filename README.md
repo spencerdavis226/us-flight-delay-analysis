@@ -1,4 +1,4 @@
-# Tampa Air Travel Operations Analysis
+# U.S. Flight Delay & Cancellation Analysis (January 2024)
 
 A SQL-first analytics project analyzing flight delays, cancellations, and operational performance across U.S. airports using Bureau of Transportation Statistics (BTS) data.
 
@@ -86,6 +86,17 @@ REFERENCE.md
 
 ---
 
+## Dashboard
+
+- Tableau Public Dashboard:
+  https://public.tableau.com/views/U_S_FlightDelayCancellationAnalysisJanuary2024/Dashboard
+
+  ```
+  ![Dashboard](tableau/dashboard.png)
+  ```
+
+---
+
 ## Key Questions
 
 - What does overall flight reliability look like?
@@ -102,9 +113,7 @@ REFERENCE.md
 - Avg departure delay
 - Avg arrival delay
 
-**Definition:**
-
-- Delayed = arrival/departure delay > 15 minutes
+Note: Delay-based KPIs (on-time rate and average delays) are calculated using only non-cancelled flights to ensure accurate operational performance measurement.
 
 ---
 
@@ -112,8 +121,8 @@ REFERENCE.md
 
 ### 1. Overall Performance is Strong (But Skewed)
 
-- ~76% of flights arrive on time
-- ~3.7% are cancelled
+- ~76.5% of non-cancelled flights arrive on time
+- ~3.7% of all flights are cancelled
 - Median arrival delay is early, but averages are positive
 
 Takeaway: A small number of large delays skew overall performance.
@@ -196,6 +205,18 @@ Takeaway: some routes worsen in transit due to downstream congestion.
 
 ---
 
+## Executive Summary
+
+Flight performance across U.S. airports in January 2024 is generally strong, with ~76.5% of non-cancelled flights arriving on time and a relatively low cancellation rate of ~3.7%. However, overall performance is skewed by a small number of large delays rather than widespread system failure.
+
+Delays are primarily driven by departure disruptions, with flights recovering time in transit but not always fully. Performance varies significantly across carriers, routes, and airports, indicating that delays are concentrated rather than evenly distributed.
+
+Specific bottlenecks—most notably Dallas/Fort Worth (DFW)—appear repeatedly across high-delay routes, suggesting network-level congestion points. Additionally, smaller regional airports exhibit higher variability and worse delay outcomes compared to major hubs.
+
+Overall, the analysis shows that improving performance is less about system-wide changes and more about targeting high-impact routes, congested hubs, and departure operations.
+
+---
+
 ## Methodology (Simple + Explainable)
 
 - Start with raw BTS data
@@ -206,7 +227,7 @@ Takeaway: some routes worsen in transit due to downstream congestion.
   - `GROUP BY`
   - `FILTER`
   - `HAVING COUNT(*) > 100` (to avoid small-sample noise)
-- Export clean, aggregated tables for Tableau visualization
+- Export clean, aggregated tables for Tableau visualization (ensuring consistent KPI definitions across SQL and dashboard)
 
 ---
 
@@ -221,17 +242,9 @@ This project demonstrates:
 
 ---
 
-## Next Steps
-
-- Finalize Tableau dashboard layout and visuals
-- Add dashboard screenshot to README
-- Write concise executive summary
-
----
-
 ## TL;DR
 
-Flight performance is generally strong, but delays are:
+Flight performance is generally strong, but delays (based on non-cancelled flights) are:
 
 - concentrated in specific routes and airports
 - driven heavily by departure issues
