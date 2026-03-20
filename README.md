@@ -13,7 +13,7 @@ This project analyzes January 2024 flight data (~547k records) to understand:
 - Where delays and cancellations are most concentrated
 - How delays behave across the network (e.g., departure vs arrival)
 
-Built to demonstrate real-world analytical thinking, not just SQL syntax.
+Built to demonstrate real-world analytical thinking, KPI definition, and operational performance analysis using SQL.
 
 ---
 
@@ -29,14 +29,22 @@ Overall, the analysis shows that improving performance is less about system-wide
 
 ---
 
+## Visual Highlights
+
+### Network Performance Overview (Tableau Dashboard)
+
+![Dashboard](tableau/dashboard.png)
+
+> Interactive version: https://public.tableau.com/views/U_S_FlightDelayCancellationAnalysisJanuary2024/Dashboard
+
+---
+
 ## Dashboard
 
 - Tableau Public Dashboard:
   https://public.tableau.com/views/U_S_FlightDelayCancellationAnalysisJanuary2024/Dashboard
 
-  Interactive dashboard built in Tableau highlighting carrier, route, and airport performance.
-
-  ![Dashboard](tableau/dashboard.png)
+Interactive dashboard highlighting carrier, route, and airport performance.
 
 ---
 
@@ -135,7 +143,7 @@ Takeaway: A small number of large delays skew overall performance.
 
 ---
 
-### 2. Delays Start at Departure
+### 2. Delays Originate at Departure
 
 - Avg departure delay: ~15.6 min
 - Avg arrival delay: ~10.3 min
@@ -213,32 +221,32 @@ Takeaway: some routes worsen in transit due to downstream congestion.
 
 ## Methodology (Simple + Explainable)
 
-- Start with raw BTS data
-- Load into PostgreSQL
-- Create clean analysis table (warehouse.flights)
-- Build simple, readable SQL queries
-- Use:
+- Load raw BTS data into PostgreSQL
+- Create a clean analysis table (`warehouse.flights`)
+- Define KPIs carefully (excluding cancelled flights from delay metrics)
+- Build SQL queries using:
   - `GROUP BY`
   - `FILTER`
   - `HAVING COUNT(*) > 100` (to avoid small-sample noise)
-- Export clean, aggregated tables for Tableau visualization (ensuring consistent KPI definitions across SQL and dashboard)
+- Export clean, aggregated tables for Tableau visualization
+
+Focus: maintain consistent KPI definitions between SQL outputs and dashboard reporting.
 
 ---
 
-## Why This Project
+## How to Review This Project Quickly
 
-This project demonstrates:
-
-- ability to structure a real analysis workflow
-- strong SQL fundamentals
-- business-oriented thinking
-- clear, concise insight communication
+1. Read the **Executive Summary**
+2. Review the **Visual Highlights (Dashboard)**
+3. Skim the **Key Findings**
+4. Open the **Tableau Dashboard**
+5. Review SQL files for technical detail
 
 ---
 
 ## TL;DR
 
-Flight performance is generally strong, but delays (based on non-cancelled flights) are:
+Flight performance is generally strong, but delays are:
 
 - concentrated in specific routes and airports
 - driven heavily by departure issues
