@@ -37,6 +37,15 @@ Overall, the analysis shows that improving performance is less about system-wide
 
 > Interactive version: https://public.tableau.com/views/U_S_FlightDelayCancellationAnalysisJanuary2024/Dashboard
 
+### Power BI Version (Rebuilt Dashboard)
+
+A Power BI version of this dashboard was recreated to demonstrate adaptability across BI tools and the ability to quickly translate analytical work into a new visualization environment.
+
+- Power BI file: `powerbi/flight_dashboard.pbix`
+- PDF preview: `powerbi/flight_dashboard.pdf`
+
+Note: The Power BI version replicates the original Tableau layout and KPIs using the same SQL-derived datasets, with minimal transformations to maintain consistency in metric definitions.
+
 ---
 
 ## Dashboard
@@ -53,6 +62,7 @@ Interactive dashboard highlighting carrier, route, and airport performance.
 - **PostgreSQL** – data modeling + analysis
 - **SQL** – core analysis (aggregations, filtering, KPIs)
 - **Tableau** – dashboard built from SQL export tables
+- **Power BI** – dashboard replication + demonstration of cross-tool adaptability
 - **VS Code + GitHub** – project workflow
 
 ---
@@ -105,6 +115,10 @@ Note: Raw dataset files are not included in this repository due to size constrai
     carrier_performance.csv
     airport_performance.csv
     route_performance.csv
+
+/powerbi
+  flight_dashboard.pbix
+  flight_dashboard.pdf
 
 README.md
 ```
